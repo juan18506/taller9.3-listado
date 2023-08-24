@@ -4,7 +4,7 @@ const item = document.getElementById('item')
 const ul = document.getElementById('contenedor')
 
 const listaOnline = window.localStorage.getItem('lista')
-let lista = listaOnline ? JSON.parse(listaOnline) : []
+const lista = listaOnline ? JSON.parse(listaOnline) : []
 
 lista.forEach(item => {
   ul.innerHTML += `
@@ -28,6 +28,6 @@ agregar.addEventListener('click', () => {
 
 limpiar.addEventListener('click', () => {
   window.localStorage.removeItem('lista')
-  lista = []
+  while (lista.length > 0) lista.pop()
   ul.innerHTML = ''
 })
