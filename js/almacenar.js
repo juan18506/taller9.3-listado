@@ -1,33 +1,33 @@
-const agregar = document.getElementById('agregar')
-const limpiar = document.getElementById('limpiar')
-const item = document.getElementById('item')
+const addButton = document.getElementById('agregar')
+const clearButton = document.getElementById('limpiar')
+const searchInput = document.getElementById('item')
 const ul = document.getElementById('contenedor')
 
-const listaOnline = window.localStorage.getItem('lista')
-const lista = listaOnline ? JSON.parse(listaOnline) : []
+const localList = window.localStorage.getItem('list')
+const list = localList ? JSON.parse(localList) : []
 
-lista.forEach(item => {
+list.forEach(item => {
   ul.innerHTML += `
     <li class="list-group-item">${item}</li>
   `
 })
 
-agregar.addEventListener('click', () => {
-  const newValue = item.value
+addButton.addEventListener('click', () => {
+  const newValue = searchInput.value
   if (!newValue) return 
   
-  lista.push(newValue)
-  window.localStorage.setItem('lista', JSON.stringify(lista))
+  list.push(newValue)
+  window.localStorage.setItem('list', JSON.stringify(list))
   
   ul.innerHTML += `
   <li class="list-group-item">${newValue}</li>
   `
   
-  item.value = item.defaultValue
+  searchInput.value = searchInput.defaultValue
 })
 
-limpiar.addEventListener('click', () => {
-  window.localStorage.removeItem('lista')
-  while (lista.length > 0) lista.pop()
+clearButton.addEventListener('click', () => {
+  window.localStorage.removeItem('list')
+  while (list.length > 0) list.pop()
   ul.innerHTML = ''
 })
