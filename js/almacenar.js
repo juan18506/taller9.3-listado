@@ -18,10 +18,12 @@ agregar.addEventListener('click', () => {
   
   lista.push(newValue)
   window.localStorage.setItem('lista', JSON.stringify(lista))
-
+  
   ul.innerHTML += `
-    <li class="list-group-item">${newValue}</li>
+  <li class="list-group-item">${newValue}</li>
   `
+  
+  item.value = item.defaultValue
 })
 
 limpiar.addEventListener('click', () => {
